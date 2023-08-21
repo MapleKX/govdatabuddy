@@ -1,0 +1,33 @@
+api-version: 2019-12-01
+location: eastus
+name: govdatabuddyapp
+properties:
+  containers:
+  - name: streamlitapp
+    properties:
+      image: gdbreg.azurecr.io/govdatabuddy:v1
+      ports:
+      - port: 80
+        protocol: TCP
+      - port: 443
+        protocol: TCP
+      resources:
+        requests:
+          cpu: 2.0
+          memoryInGB: 1.5
+  imageRegistryCredentials:
+  - server: gdbreg.azurecr.io
+    username: gdbreg
+    password: Ug/swciS4NHlj5qRw5tlZAVGqKN4vXC6DvaUyPSEA0+ACRCd3PKO
+  restartPolicy: Never
+  ipAddress:
+    ports:
+    - port: 443
+      protocol: TCP
+    - port: 80
+      protocol: TCP
+    type: Public
+    dnsNameLabel: govdatabuddyapp
+  osType: Linux
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
